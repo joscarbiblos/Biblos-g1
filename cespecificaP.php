@@ -1,7 +1,7 @@
 <?php
 include "funciones.php";
 controlSesion();
-$usuario=$_SESSION['usuario'];
+$usuario=$_SESSION['usuario'];  
 ?>  
 <!DOCTYPE html>
 <html>
