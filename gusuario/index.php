@@ -1,7 +1,8 @@
 <?php
-include "./funciones.php";
-controlSesion();
+include_once "../funciones.php";
+include "fusuario.php";
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,16 +10,10 @@ controlSesion();
         <title></title>
     </head>
     <body>
-        <h1>Listado general del catalogo.</h1>
         <?php
-        listarCatalogo();
+        gestionUsuario();
+        
         ?>
+        <a href='altaUsuario.php'>Alta de usuario</a>
     </body>
 </html>
-
-<?php
-
-
-
-
-?>

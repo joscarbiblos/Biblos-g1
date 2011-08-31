@@ -16,7 +16,8 @@ controlSesion();
         $id_titulo = $_GET['c3'];
 
         iniciaBD(); // Paso 1 y 2 de BD
-
+echo "  <a href='mostrarusuario.php'>.perfil</a>";
+       
         $sql = "select * from titulo where 
                 dewey_id_categoria_dewey='$cod_dewey'
                 AND id_apellido='$id_apellido'
@@ -71,6 +72,7 @@ controlSesion();
             echo "<tr>\n";
 
             echo"</table>";
+
         }
         ?>
     </body>

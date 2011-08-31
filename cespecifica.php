@@ -10,7 +10,7 @@ controlSesion();
 formmenuespecifico();
 echo "<h1>Listado especifico del catalogo.</h1>";
 
-//iniciaBD();
+iniciaBD();
 
 $busca = $_POST['busca'];
 $tipobusqueda = $_POST['tipobusqueda'];
@@ -28,11 +28,6 @@ if (!$tipobusqueda || !$busca) {
 }
 
 
-$servidor = 'localhost';
-$usr = 'root';
-$pwd = '';
-$iddb = "biblos_g1";
-$conexion = mysql_connect($servidor, $usr, $pwd);
 
 
 //if ($accion == titulo) {
