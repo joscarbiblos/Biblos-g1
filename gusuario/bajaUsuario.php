@@ -14,9 +14,10 @@ include "fusuario.php";
         $dni=$_GET['dni'];
         echo "Baja para el usuario: ".$dni;
         iniciaBD();
-        mostrarusuario($dni);
+        formularioUsuario($dni,false);
         echo "Borrado: ".$dni;
         borrarusuario($dni);
+        echo"<br><a href='./index.php'>Gestión usuario</a>";
         ?>
     </body>
 </html>

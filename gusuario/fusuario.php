@@ -13,7 +13,7 @@ function altausuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clav
 
     $resultado = mysql_query($query);
     if ($resultado)
-        echo mysql_affected_rows() . " Alta de usuario correcta. Bienvenido .$nombre_usuario";
+        echo mysql_affected_rows() . " Alta de usuario correcta. Bienvenido .$nombre_usuario\n";
     else
         die("Fallo al insertar" . mysql_error());
 }
@@ -21,14 +21,14 @@ function altausuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clav
 function listarusuario($dni, $nombre_usuario, $apellido1, $apellido2, $direccion, $email, $telefono) {
     iniciaBD();
 
-    $query = "select * from usuario";
+    $query = "select * from usuario\n";
     $resultado = mysql_query($query);
-    echo "Numero de :" . mysql_num_rows($resultado) . "<p>";
+    echo "Numero de :" . mysql_num_rows($resultado) . "<p>\n";
 
-    echo"<table border=1>";
+    echo"<table border=1>\n";
     echo"<th>dni</th>
                         <th>nombre</th>
-                        <th>apellido1 </th><th>apellido2 </th><th>direccion</th>\n";
+                        <th>apellido1 </th><th>apellido2 </th><th>direccion</th>\n\n";
     if ($resultado) {
         while ($usuario = mysql_fetch_array($resultado)) {
             // Saco en variables el codigo completo del libro
@@ -43,44 +43,29 @@ function listarusuario($dni, $nombre_usuario, $apellido1, $apellido2, $direccion
             $email = $usuario['email'];
             $telefono = $usuario['telefono'];
 
-            echo "<tr>";
-            echo"<td>$dni</td>";
-            echo"<td>$nombre_usuario</td>";
-            echo"<td>$apellido1</td>";
-            echo"<td>$apellido2</td>";
-            echo"<td>$direccion</td>";
-            echo"<td>$email</td>";
-            echo"<td>$telefono</td>";
-
             echo "<tr>\n";
+            echo"<td>$dni</td>\n";
+            echo"<td>$nombre_usuario</td>\n";
+            echo"<td>$apellido1</td>\n";
+            echo"<td>$apellido2</td>\n";
+            echo"<td>$direccion</td>\n";
+            echo"<td>$email</td>\n";
+            echo"<td>$telefono</td>\n";
+
+            echo "<tr>\n\n";
         }
-        echo"</table>";
+        echo"</table>\n";
     }
 
     else
         die("Fallo al listar" . mysql_error());
 }
 
-function gestionUsuario() {
+function rellenaUsuariosConOpciones() {
     iniciaBD();
-
-
-
-
-    // Comienzo estructura grafica de la cabecera
-    echo"<table border=1>";
-    // Preparo los encabezados
-    echo"<th>M</th><th>B</th>
-            <th>dni</th><th>clave</th>
-        <th>Nombre</th><th>Apellido1 </th><th>apellido2 </th>
-        <th>direccion</th>
-        <th>telefono</th> <th>email</th> <th>Adm?</th> <th>Plantilla</th>
-        \n";
-
-
     $query = "select * from usuario";
     $resultado = mysql_query($query);
-    echo "Numero de :" . mysql_num_rows($resultado) . "<p>";
+    echo "Total de usuarios: ".mysql_num_rows($resultado)."<p>\n";
 
     // Relleno las filas de la tabla grafica con las filas que vienen del select a la BD
 
@@ -89,31 +74,31 @@ function gestionUsuario() {
             // Saco en variables el codigo completo del libro
             $dni = $usuario['dni'];
             $clave = $usuario['clave'];
-            $nombre = $usuario['nombre_usuario'];
-            $apellido1 = $usuario['apellido1_usuario'];
-            $apellido2 = $usuario['apellido2_usuario'];
-            $direccion = $usuario['direccion'];
+            $nombre = htmlentities($usuario['nombre_usuario']);
+            $apellido1 = htmlentities($usuario['apellido1_usuario']);
+            $apellido2 = htmlentities($usuario['apellido2_usuario']);
+            $direccion = htmlentities($usuario['direccion']);
             $telefono = $usuario['telefono'];
             $email = $usuario['email'];
             $es_adminitrador = $usuario['es_administrador'];
             $id_plantilla = $usuario['plantilla_id_plantilla'];
 
-            echo "<tr>";
-            echo"<td><input type='button' name='bmodificar' value='Modificar' OnClick='ModificarUsuario($dni)'</td>";
-            echo"<td><input type='button' name='bborrar' value='Borrar' OnClick='BorrarUsuario($dni)'</td>";
-            echo"<td>$dni</td>";
-            echo"<td>$clave</td>";
-            echo"<td>$nombre</td>";
-            echo"<td>$apellido1</td>";
-            echo"<td>$apellido2</td>";
-            echo"<td>$direccion</td>";
-            echo"<td>$telefono</td>";
-            echo"<td>$email</td>";
-            echo"<td>$es_adminitrador</td>";
-            echo"<td>$id_plantilla</td>";
             echo "<tr>\n";
+            echo"<td><a href='http://localhost/Biblos/gusuario/mUsuarioG.php?dni=$dni'><img src='../imagen/ico_modificar_datos.png'></a></td>\n";
+            echo"<td><a href='http://localhost/Biblos/gusuario/bajaUsuario.php?dni=$dni'><img src='../imagen/aspa.png' width='20%'></a></td>\n";            
+            //echo"<td><input type='button' name='bborrar' value='Borrar' OnClick='BorrarUsuario($dni)'</td>\n";
+            echo"<td>$dni</td>\n";
+            echo"<td>$clave</td>\n";
+            echo"<td>$nombre</td>\n";
+            echo"<td>$apellido1</td>\n";
+            echo"<td>$apellido2</td>\n";
+            echo"<td>$direccion</td>\n";
+            echo"<td>$telefono</td>\n";
+            echo"<td>$email</td>\n";
+            echo"<td>$es_adminitrador</td>\n";
+            echo"<td>$id_plantilla</td>\n";
+            echo "<tr>\n\n";
         }
-        echo"</table>";
     }
 
     else
@@ -122,14 +107,14 @@ function gestionUsuario() {
 
 function modificarUsuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clave, $es_administrador) {
     $query = "UPDATE titulo
-            SET  id_apellido='$autor',editorial_id_editorial='$editorial',nombre='$nombre',sinopsis='$sinopsis', isbn=$isbn WHERE dewey_id_categoria_dewey=$id";
+            SET  id_apellido='$autor',editorial_id_editorial='$editorial',nombre='$nombre',sinopsis='$sinopsis', isbn=$isbn WHERE dewey_id_categoria_dewey=$id\n";
     $resultado = mysql_query($query);
     if (mysql_affected_rows() == 0) {
         echo ("El registro no existe.");
         // altalibro($id,$autor,$editorial,$nombre);
     } else
     if ($resultado)
-        echo mysql_affected_rows() . " modifacion de libro correcta.";
+        echo mysql_affected_rows() . " modifacion de libro correcta.\n";
     else
         die("Fallo al modificar" . mysql_error());
 }
@@ -138,19 +123,19 @@ function borrarusuario($dni) {
     //controlSesion();
     iniciaBD();
 
-    $query = "DELETE FROM usuario WHERE dni='$dni'";
+    $query = "DELETE FROM usuario WHERE dni='$dni'\n";
     $resultado = mysql_query($query);
     if (mysql_affected_rows() == 0)
         echo ("El usuario que quiere borrar no existe.");
     else
     if ($resultado)
-        echo "(" . mysql_affected_rows() . ") Se ha borrado $dni correctamente";
+        echo "(" . mysql_affected_rows() . ") Se ha borrado $dni correctamente\n";
     else
         die("Fallo al borrar el registro" . mysql_error());
 }
 
-function mostrarusuario($dni) {
-    $query = "select * from usuario where dni= '$dni' ";
+function formularioUsuario($dni, $editable, $valorBoton="Enviar", $accion="") {
+    $query = "select * from usuario where dni= '$dni' \n";
 
 
     $resultado = mysql_query($query);
@@ -161,41 +146,57 @@ function mostrarusuario($dni) {
         $apellido2 = $fila['apellido2_usuario'];
         $telefono = $fila['telefono'];
         $direccion = $fila['direccion'];
+        $es_administrador= $fila['es_administrador'];
         $email = $fila['email'];
         $plantilla = $fila['plantilla_id_plantilla'];
         $clave = $fila['clave'];
 
-        echo "<form name='mUsuarioP.php' action='accion' method='POST'>";
+        echo "<form name='$valorBoton' action='$accion' method='POST'>\n\n";
 
-        echo "<label>DNI</label>";
-        echo"<input type='text' name='DNI' value='$dni' readonly='readonly' /> <p>";
+        echo "<label>DNI</label>\n";
+        echo"<input type='text' name='dni' value='$dni' readonly='readonly' /> <p>\n";
+
+        echo "<label>Nombre</label>\n";
+        echo (componeInput("nombre_usuario", $nombreusuario, $editable)."<p>\n");
+
+
+        echo "<label>Clave</label>\n";
+        echo (componeInput("clave", $clave, $editable)."<p>\n");        
+
+        echo "<label>Apellido1</label>\n";
+        echo (componeInput("apellido1_usuario", $apellido1, $editable)."<p>\n");        
+
+        echo "<label>Apellido2</label>\n";
+        echo (componeInput("apellido2_usuario", $apellido2, $editable)."<p>\n");                
         
-        echo "<label>Nombre</label>";
-        echo"<input type='text' name='nombreUsuario' value='$nombreusuario' /> <p>";
+        echo "<label>Es Adm</label>\n";
+        echo (componeInput("es_administrador", $es_administrador, $editable)."<p>\n");
 
-        echo "<label>Clave</label>";
-        echo"<input type='text' name='clave' value='$clave' /> <p>";
+        echo "<label>Telefono</label>\n";
+        echo (componeInput("telefono", $telefono, $editable)."<p>\n");                        
 
-        echo "<label>Apellido1</label>";
-        echo"<input type='text' name='apellido1' value='$apellido1' /> <p>";
+        echo "<label>Direccion</label>\n";
+        echo (componeInput("direccion", $direccion, $editable)."<p>\n");                        
 
-        echo "<label>Apellido2</label>";
-        echo"<input type='text' name='apellido2' value='$apellido2' /> <p>";
+        echo "<label>eMail</label>\n";
+        echo (componeInput("email", $email, $editable)."<p>\n");                        
 
-        echo "<label>Telefono</label>";
-        echo"<input type='text' name='telefono' value='$telefono' /> <p>";
-
-        echo "<label>Direccion</label>";
-        echo"<input type='text' name='direccion' value='$direccion' /> <p>";
-
-        echo "<label>eMail</label>";
-        echo"<input type='text' name='email' value='$email' /> <p>";
-
-        echo "<label>Plantilla</label>";
-        echo"<input type='text' name='plantilla' value='$plantilla' /> <p>";
-        echo"<input type='submit' value='Modificar' name='modificar' />";   
-        echo "</form>";
+        echo "<label>Plantilla</label>\n";
+        echo (componeInput("plantilla_id_plantilla", $plantilla, $editable)."<p>\n");
+        if($editable)
+            echo"<input type='submit' value='$valorBoton' name='$valorBoton' />\n";
+        echo "</form>\n";
     }
+}
+
+function componeInput($nombreName, $valor, $editable){
+          $campo = "<input type='text' name='$nombreName' value='".htmlentities($valor)."' ";
+        if (!$editable)
+            $campo = $campo . "readonly='readonly' ";
+        $campo = $campo . "/>";
+        
+        return $campo;
+        
 }
 ?>
 
@@ -212,7 +213,7 @@ function mostrarusuario($dni) {
     function ModificarUsuario(dni)
     {
 
-        open("http://localhost/Biblos/gusuario/mUsuario.php?dni="+dni);
+        open("http://localhost/Biblos/gusuario/mUsuarioG.php?dni="+dni);
 
         return true;
     }     
