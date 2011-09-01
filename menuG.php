@@ -50,7 +50,7 @@ function mostrarOpcionesAdministracion() {
         <li>Administracion
         <ul>
         <li><a href='gestionlibrog.php'>Gestion Catalogo</a>      
-        <li><a href='gestionusuariog.php'>Gestion Usuario</a>        
+        <li><a href='gusuario/index.php'>Gestion Usuario</a>        
         </ul>");
 }
 

@@ -24,10 +24,10 @@ include_once "../funciones.php";
             $id_plantilla = $_POST['plantilla_id_plantilla'];
             
              $query = "UPDATE usuario
-            SET  dni='$dni',clave='$clave', nombre_usuario='$nombre',apellido1_usuario='$apellido1',
+            SET clave='$clave', nombre_usuario='$nombre',apellido1_usuario='$apellido1',
             apellido2_usuario='$apellido2',direccion='$direccion',telefono='$telefono',email='$email',
-            es_administrador='$es_administrador'plantilla_id_plantilla='$id_plantilla";
-             
+            es_administrador='$es_administrador'plantilla_id_plantilla='$id_plantilla
+             WHERE dni='$dni'";
              $resultado = mysql_query($query);
     if (mysql_affected_rows() == 0) {
         echo ("El registro no existe.");
