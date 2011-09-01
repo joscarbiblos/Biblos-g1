@@ -23,7 +23,7 @@ include "fusuario.php";
             $es_administrador = $_POST['es_administrador'];
             $apellido1 = $_POST['apellido1_usuario'];
             $apellido2 = $_POST['apellido2_usuario'];
-            $plantilla_id_plantilla = $_POST['plantilla_id_plantilla'];
+            $plantilla_id_plantilla = $_POST['plantilla'];
             
             altausuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clave, $es_administrador, $apellido1, $apellido2, $plantilla_id_plantilla);
             ?>

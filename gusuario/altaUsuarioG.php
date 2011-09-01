@@ -56,7 +56,8 @@ include "../funciones.php";
                         *<br></td></tr>
                 <tr>
                     <td>plantilla</td>
-                    <td><input type=text name=plantilla_id_plantilla maxlength=30 size=30 >
+                    <td>
+                        <?php cargardorLista("plantilla", "id_plantilla", "nombre_plantilla", "1"); ?>                      
                         *<br></td></tr>
                 <tr>
                     <td><input name="submit" type=submit value="Confirmar"></td>
