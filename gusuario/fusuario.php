@@ -1,19 +1,18 @@
 <?php
 include_once "../funciones.php";
 
-function altausuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clave, $es_administrador, $apellido1, $apellido2, $plantilla_id_plantilla) {
+function altausuario ($dni, $email, $direccion, $telefono, $nombre_usuario, $clave, $es_administrador, $apellido1, $apellido2, $plantilla_id_plantilla) {
     iniciaBD();
 
     $query = "insert INTO usuario
-                (dni, email, direccion, telefono, nombre_usuario, clave, es_administrador, apellido1_usuario, apellido2_usuario, plantilla_id_plantilla)
-       values ('$dni', '$email', '$direccion', '$telefono', 
-    '$nombre_usuario', '$clave', '$es_administrador', '$apellido1', '$apellido2', '$plantilla_id_plantilla')";
-
-    echo $query;
-
+                (dni,email,direccion,telefono,nombre_usuario,clave,es_administrador,apellido1_usuario,apellido2_usuario,plantilla_id_plantilla)
+       values ('$dni', '$email', '$direccion', '$telefono', '$nombre_usuario', '$clave', '$es_administrador', '$apellido1', '$apellido2', '$plantilla_id_plantilla')";
     $resultado = mysql_query($query);
+    
+    echo "query:$query";
+    
     if ($resultado)
-        echo mysql_affected_rows() . " Alta de usuario correcta. Bienvenido .$nombre_usuario\n";
+        echo mysql_affected_rows() . " Alta de usuario correcta. Bienvenido:.$nombre_usuario \n";
     else
         die("Fallo al insertar" . mysql_error());
 }
@@ -85,7 +84,7 @@ function rellenaUsuariosConOpciones() {
 
             echo "<tr>\n";
             echo"<td><a href='http://localhost/Biblos/gusuario/mUsuarioG.php?dni=$dni'><img src='../imagen/ico_modificar_datos.png'></a></td>\n";
-            echo"<td><a href='http://localhost/Biblos/gusuario/bajaUsuario.php?dni=$dni'><img src='../imagen/aspa.png' width='20%'></a></td>\n";            
+            echo"<td><a href='http://localhost/Biblos/gusuario/bajaUsuario.php?dni=$dni'><img src='../imagen/aspa.png'></a></td>\n";            
             //echo"<td><input type='button' name='bborrar' value='Borrar' OnClick='BorrarUsuario($dni)'</td>\n";
             echo"<td>$dni</td>\n";
             echo"<td>$clave</td>\n";

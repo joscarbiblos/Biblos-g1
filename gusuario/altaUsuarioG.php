@@ -53,7 +53,7 @@ include "../funciones.php";
                 <tr>
                     <td>administrador ?</td>
                     <td><input type=text name=es_administrador maxlength=30 size=30 >
-                        *<br></td></tr>
+                        *<br></td></tr> 
                 <tr>
                     <td>plantilla</td>
                     <td>

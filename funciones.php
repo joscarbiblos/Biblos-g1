@@ -1,4 +1,5 @@
 <?php
+
 // Arrancamos la sesion de forma comun
 session_start();
 
@@ -101,9 +102,9 @@ function listarCatalogo() {
     iniciaBD();
 
     $query = "select * from titulo";
-   
+
     $resultado = mysql_query($query);
-   echo "Numero de títulos:" . mysql_num_rows($resultado) . "<p>";
+    echo "Numero de títulos:" . mysql_num_rows($resultado) . "<p>";
 
     echo"<table border=1>";
     echo"<th>Codigo</th>
@@ -137,16 +138,18 @@ function listarCatalogo() {
         die("Fallo al listar") . mysql_error();
 }
 
-function altalibro($id, $autor, $editorial, $nombre, $sinopsis, $isbn) {
-    $query = "insert into titulo
-                (dewey_id_categoria_dewey,id_apellido,editorial_id_editorial,nombre,sinopsis,isbn)
-       values ($id,'$autor','$editorial','$nombre','$sinopsis',$isbn)";
-    $resultado = mysql_query($query);
-    if ($resultado)
-        echo mysql_affected_rows() . " Alta de libro correcta.";
-    else
-        die("Fallo al insertar") . mysql_error();
-}
+/*
+  function altalibro($id, $autor, $editorial, $nombre, $sinopsis, $isbn) {
+  $query = "insert into titulo
+  (dewey_id_categoria_dewey,id_apellido,editorial_id_editorial,nombre,sinopsis,isbn)
+  values ($id,'$autor','$editorial','$nombre','$sinopsis',$isbn)";
+  $resultado = mysql_query($query);
+  if ($resultado)
+  echo mysql_affected_rows() . " Alta de libro correcta.";
+  else
+  die("Fallo al insertar") . mysql_error();
+  }
+ */
 
 function modificarlibro($id, $autor, $editorial, $nombre, $sinopsis, $isbn) {
     $query = "UPDATE titulo
@@ -162,7 +165,7 @@ function modificarlibro($id, $autor, $editorial, $nombre, $sinopsis, $isbn) {
         die("Fallo al modificar" . mysql_error());
 }
 
-function borrarlibro($id, $nombre) {
+/*function borrarlibro($id, $nombre) {
     @ $sgbd = mysql_pconnect("localhost", "root", "");
     $db = mysql_select_db("biblos-g1");
     $query = "DELETE FROM titulo WHERE dewey_id_categoria_dewey=$id AND nombre='$nombre'";
@@ -174,7 +177,7 @@ function borrarlibro($id, $nombre) {
         echo "Se han borrado" . mysql_affected_rows() . " libro correctamente";
     else
         die("Fallo al borrar el registro" . mysql_error());
-}
+}*/
 
 function listartodo() {
     $sgbd = mysql_pconnect("localhost", "root", "");
@@ -246,22 +249,88 @@ function listarCatalogoXCampo($campoBusqueda, $valorBusqueda, $isExact) {
     }
 }
 
-function cargardorLista($nombreTabla, $codCampo, $valorCampo1, $visibles=1) {
+/**
+ * @author Niko, fdksakl, fsdkk
+ * @version 1.0
+ * @param type $nombreTabla
+ * @param type $codCampo
+ * @param type $valorCampo
+ * @param type $visibles
+ * @param numerico $visibles Numero de elementos visibles simultaneamente
+ */
+function cargardorLista($nombreTabla, $codCampo, $valorCampo, $visibles=1, $opcionSeleccione=null) {
     iniciaBD();
     $query = "SELECT * FROM $nombreTabla";
     $resultado = mysql_query($query);
+    $opcion0 = "";
 
-    echo "<select name='$nombreTabla' size='$visibles'>";
-    echo "<option value='-1'>Seleccione opci&oacute;n...</option>";
-    while ($salida = mysql_fetch_array($resultado)) {
-        echo "<option value='" . $salida[$codCampo] . "'>(".$salida[$codCampo].") ".htmlentities($salida[$valorCampo1]) . "</option>";
-        //$tabla[$nombreTabla,$i] = $salida;
+
+    $select = "<select name='$nombreTabla' size='$visibles' ";
+    if ($opcionSeleccione) {
+        $select .= "class='Obligado'";
+        $opcion0 = "<option value='' SELECTED>$opcionSeleccione";
     }
-    echo "</select>";
-  
 
+    $select .= ">";
+
+
+
+    //echo "<select name='$nombreTabla' size='$visibles'value='$value'>";
+    echo $select;
+    echo $opcion0;
+    while ($salida = mysql_fetch_array($resultado)) {
+        echo "<option value='" . $salida[$codCampo] . "'>" . htmlentities($salida[$valorCampo]) . ' (' . $salida[$codCampo] . ") </option>";
+    }
+    echo "</select></br>";
 }
 
+/**
+ * Descripción breve (una línea)
+ *
+ * Descripción extensa. Todas las líneas que
+ * sean necesarias
+ * Todas las líneas comienzan con *
+  <- Esta línea es ignorada
+ *
+ * Este DocBlock documenta la función suma()
+ * @param string $nombreTabla Recibir el nombre de una tabla de base de datos
+ * @param string $codCampo Recibe el nombre de la columna de BD con el id de la tabla
+ * @return void
+ * @author Nuñez
+ * @version 1.0
+ * @since 0,9
+ *
+ */
+function cargardorLista2($nombreTabla, $codCampo, $valorCampo1, $valorCampo2, $visibles=1, $opcionSeleccione=null, $strOrden=null) {
+    iniciaBD();
+    $query = "SELECT * FROM $nombreTabla";
+    if($strOrden)
+        $query .= " ORDER BY $strOrden";
+    
+    $resultado = mysql_query($query);
+    $opcion0 = "";
 
+
+    $select = "<select name='" . $nombreTabla . "[]' size='$visibles' ";
+    if ($opcionSeleccione) {
+        $select .= "class='Obligado'";
+        $opcion0 = "<option value='' SELECTED>$opcionSeleccione";
+    }
+
+    $select .= ">";
+    // $select = $select .">";
+
+
+    echo $select;
+    echo $opcion0;
+
+    while ($salida = mysql_fetch_array($resultado)) {
+        echo "<option value='" . $salida[$codCampo] . "-" . strtoupper(substr($salida[$valorCampo1], 0, 3)) . "'>" . htmlentities($salida[$valorCampo1]) . "," . htmlentities($salida[$valorCampo2]) . "</option>";
+    }
+    echo "</select></br>";
+}
+function fijaPlantillaCSS() {
+    echo "<LINK href='recursos/plantilla" . $_SESSION['tema'] . ".css' rel='stylesheet' type='text/css'>\n";
+}
 
 ?>

@@ -7,7 +7,8 @@ controlSesion();
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>Menu principal Biblos</title>
+         <?php fijaPlantillaCSS();?>
     </head>
     <body>
         <h1>MENU</h1>
@@ -49,7 +50,7 @@ function mostrarOpcionesAdministracion() {
     echo("
         <li>Administracion
         <ul>
-        <li><a href='gestionlibrog.php'>Gestion Catalogo</a>      
+        <li><a href='glibro/index.php'>Gestion Catalogo</a>      
         <li><a href='gusuario/index.php'>Gestion Usuario</a>        
         </ul>");
 }

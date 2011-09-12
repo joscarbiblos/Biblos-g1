@@ -11,6 +11,9 @@ include "fusuario.php";
     </head>
     <body>
         <h1>Aministracion de usuarios</h1>
+        <br><a href='altaUsuarioG.php'><img src='../imagen/cruzverde.jpg' alt='Alta' title='Alta'></a><br>
+       <br>
+
         <table border=1>
             <th>M</th><th>B</th>
             <th>dni</th><th>clave</th>
@@ -21,8 +24,9 @@ include "fusuario.php";
             rellenaUsuariosConOpciones();
             ?>
         </table>
-        <br><a href='altaUsuarioG.php'><<img src='../imagen/cruzverde.jpg' width="2%">Alta de usuario</a>
-        
+        <br><a href='altaUsuarioG.php'><img src='../imagen/cruzverde.jpg' ></a><br><br>
+
+
         <br><a href='../menuG.php'> Menu</a>
     </body>
 </html>
