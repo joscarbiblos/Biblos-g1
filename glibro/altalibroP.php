@@ -1,6 +1,9 @@
 <?php
-include_once "../funciones.php";
-include "flibro.php";
+include "../funciones.php";
+include "./flibro.php";
+controlSesion();
+$usuario =  $_SESSION['usuario'];
+
 
 //controlSesion();
 ?>

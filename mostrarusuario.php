@@ -1,7 +1,7 @@
 <?php
 //session_start();
-include "../funciones.php";
-//controlSesion();
+include "funciones.php";
+controlSesion();
 ?>
 <!DOCTYPE html>
 <html>
@@ -44,7 +44,7 @@ include "../funciones.php";
                 echo "usted usuario administrador";
             }else
                 echo "usted usuario lector";
-
+  echo  "<br><a href='./index.php'>volver a Menu Principal</a>";
             echo "<h1> perfil de usuario:</h1><p><p>";
             echo "nombre de usuario .$nombreusuario <p>";
             echo "clave: .$clave <p>";

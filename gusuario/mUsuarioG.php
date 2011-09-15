@@ -1,13 +1,13 @@
 <?php
 include "../funciones.php";
 include "fusuario.php";
-//controlSesion();
-
+controlSesion();
+$usuario =  $_SESSION['usuario'];
 ?>
 
 <html>
     <head>
-        <title>Librería Online - Gestion de biblioteca </title>
+        <title>(<?php echo $usuario['nombre_usuario']?>)Gesti&oacute;n de usuario </title>
     </head>
     <body>
 
@@ -17,7 +17,7 @@ include "fusuario.php";
         $dni=$_GET['dni'];
         echo "Mod para el usuario: ".$dni;
         iniciaBD();
-        formularioUsuario($dni, TRUE, "Modificar", "musuarioP.php");
+        formularioUsuario($dni, TRUE, "Modificar", "mUsuarioP.php");
         
         
        

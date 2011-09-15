@@ -12,7 +12,8 @@ include "fusuario.php";
     <body>
         <h1>Aministracion de usuarios</h1>
         <br><a href='altaUsuarioG.php'><img src='../imagen/cruzverde.jpg' alt='Alta' title='Alta'></a><br>
-       <br>
+        <br><a href='../menuG.php'> Menu</a>
+        <br>
 
         <table border=1>
             <th>M</th><th>B</th>

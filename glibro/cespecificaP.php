@@ -1,5 +1,6 @@
 <?php
-include "funciones.php";
+include "../funciones.php";
+include "./flibro.php";
 controlSesion();
 $usuario = $_SESSION['usuario'];
 ?>  

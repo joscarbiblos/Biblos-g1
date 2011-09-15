@@ -1,20 +1,20 @@
 <?php
-include "funciones.php";
+include "../funciones.php";
+include "flibro.php";
 controlSesion();
 $usuario=$_SESSION['usuario'];
 echo "Usuario:" . $usuario['nombre_usuario'];
 
- 
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Consulta espec&iacute;fica (<?php echo $usuario['nombre_usuario']?>)</title>
+        <title> (<?php echo $usuario['nombre_usuario']?>)Consulta espec&iacute;fica</title>
     </head>
     <body>
-        <a href='mostrarusuario.php'>.perfil</a>
+        <a href='../mostrarusuario.php'>.perfil</a>
        <form action='cespecificaP.php' method='POST'>
 
             <fieldset>
@@ -37,6 +37,7 @@ echo "Usuario:" . $usuario['nombre_usuario'];
             </fieldset>
            
         </form>
-   <p><a href="menuG.php">Volver a menu</a></p>
+        <p><a href="index.php">Volver a listado general de gesti&oacute;n de libros</a>
+   <a href="../menuG.php">Volver a menu principal</a></p>
     </body>
 </html>

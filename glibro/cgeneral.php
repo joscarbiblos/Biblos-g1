@@ -1,5 +1,6 @@
 <?php
-include "./funciones.php";
+include "../funciones.php";
+include "flibro.php";
 controlSesion();
 ?>
 <!DOCTYPE html>
@@ -13,6 +14,9 @@ controlSesion();
         <?php
         listarCatalogo();
         ?>
+   <p><a href="index.php" align="right">Volver a menu de Gestión de libros               </a>
+    <a href='../mostrarusuario.php' align="left"> perfil usuario actual</a></p>
+   
     </body>
 </html>
 

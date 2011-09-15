@@ -1,17 +1,19 @@
 <?php
 include "../funciones.php";
 include "flibro.php";
-//controlSesion();
+controlSesion();
+$usuario =  $_SESSION['usuario'];
+
 ?>
 
 <html>
     <head>
-        <title>Librería Online - Gestion de biblioteca </title>
+        <title>(<?php echo $usuario['nombre_usuario']?>)Librer&iacute;a Online - Gesti&oacute;n de biblioteca </title>
     </head>
     <body>
 
 
-        <h1>Modificación de libros</h1>
+        <h1>Modificaci&oacute;n de libros</h1>
         <?php
     
         $dewey = $_GET['dewey_id_categoria_dewey'];
@@ -20,16 +22,6 @@ include "flibro.php";
         iniciaBD();
         formulariolibro($dewey,$autor,$id, TRUE, "Modificar", "mlibroP.php");
 
-        
-
-        function componeInput($nombreName, $valor, $editable) {
-            $campo = "<input type='text' name='$nombreName' value='" . htmlentities($valor) . "' ";
-            if (!$editable)
-                $campo = $campo . "readonly='readonly' ";
-            $campo = $campo . "/>";
-
-            return $campo;
-        }
         ?>
 
     </body>

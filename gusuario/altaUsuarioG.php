@@ -1,12 +1,13 @@
 <?php
 include "../funciones.php";
-//controlSesion();
+include "fusuario.php";
+controlSesion();
 
 ?>
 
 <html>
     <head>
-        <title>Librería Online - Gestion de biblioteca </title>
+        <title>Librer&iacute;a Online - Gestion de biblioteca </title>
     </head>
     <body>
 
@@ -52,13 +53,13 @@ include "../funciones.php";
 
                 <tr>
                     <td>administrador ?</td>
-                    <td><input type=text name=es_administrador maxlength=30 size=30 >
-                        *<br></td></tr> 
+                    <td><?php cargardorLista("usuario", "es_administrador", "1", "seleccione"); ?>
+                        <br></td></tr> 
                 <tr>
                     <td>plantilla</td>
                     <td>
-                        <?php cargardorLista("plantilla", "id_plantilla", "nombre_plantilla", "1"); ?>                      
-                        *<br></td></tr>
+                        <?php cargardorLista("plantilla", "id_plantilla", "nombre_plantilla", "1", "seleccione"); ?>                      
+                        <br></td></tr>
                 <tr>
                     <td><input name="submit" type=submit value="Confirmar"></td>
                     <td><label>
@@ -67,8 +68,8 @@ include "../funciones.php";
                 </tr>
             </table>
         </form>
-    <p><a href="menuG.php">Volver a menu</a></p>
-    <a href='mostrarusuario.php'> perfil usuario ?></a>
+    <p><a href="../menuG.php">Volver a menu</a>
+    <a href='../mostrarusuario.php'> perfil usuario ?></a></p>
    
     </body>
 </html>

@@ -29,6 +29,7 @@ include "fusuario.php";
             ?>
 
             <br><a href='./index.php'>Gestión usuario</a>
+              <br><a href='../index.php'>Menu General</a>
 
     </body>
 </html>

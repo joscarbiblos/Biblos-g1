@@ -1,6 +1,7 @@
 <?php
-include "./funciones.php";
+include "funciones.php";
 controlSesion();
+
 ?>
 
 <!DOCTYPE html>
@@ -12,24 +13,17 @@ controlSesion();
     </head>
     <body>
         <h1>MENU</h1>
-        <?php
-        if (!$_SESSION['usuario'] || !isset($_SESSION['usuario'])) {
-            echo "logeate primero";
-        } else {
-            $usuario = $_SESSION['usuario'];
-            echo "Usuario:" . $usuario['nombre_usuario'];
-        }
-        ?>
         <h1>Opciones</h1>
         <ul><li>Consultas
                 <ul>
-                    <li><a href='cgeneral.php'>Consulta general</a>
-                    <li><a href='cespecificaG.php'>Consulta concreta</a>
+                    <li><a href='./glibro/cgeneral.php'>Consulta general</a>
+                    <li><a href='./glibro/cespecificaG.php'>Consulta concreta</a>
 
                 </ul>
 
 
                 <?php
+                $usuario =  $_SESSION['usuario'];
                 // Comprobacion del tipo de usuario
                 if ($usuario['es_administrador'] == 1)
                     mostrarOpcionesAdministracion();

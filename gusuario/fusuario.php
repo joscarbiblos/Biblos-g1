@@ -9,14 +9,13 @@ function altausuario ($dni, $email, $direccion, $telefono, $nombre_usuario, $cla
        values ('$dni', '$email', '$direccion', '$telefono', '$nombre_usuario', '$clave', '$es_administrador', '$apellido1', '$apellido2', '$plantilla_id_plantilla')";
     $resultado = mysql_query($query);
     
-    echo "query:$query";
+    //echo "query:$query";
     
     if ($resultado)
         echo mysql_affected_rows() . " Alta de usuario correcta. Bienvenido:.$nombre_usuario \n";
     else
         die("Fallo al insertar" . mysql_error());
 }
-
 function listarusuario($dni, $nombre_usuario, $apellido1, $apellido2, $direccion, $email, $telefono) {
     iniciaBD();
 
@@ -59,7 +58,6 @@ function listarusuario($dni, $nombre_usuario, $apellido1, $apellido2, $direccion
     else
         die("Fallo al listar" . mysql_error());
 }
-
 function rellenaUsuariosConOpciones() {
     iniciaBD();
     $query = "select * from usuario";
@@ -103,7 +101,6 @@ function rellenaUsuariosConOpciones() {
     else
         die("Fallo al listar" . mysql_error());
 }
-
 function modificarUsuario($dni, $email, $direccion, $telefono, $nombre_usuario, $clave, $es_administrador) {
     $query = "UPDATE titulo
             SET  id_apellido='$autor',editorial_id_editorial='$editorial',nombre='$nombre',sinopsis='$sinopsis', isbn=$isbn WHERE dewey_id_categoria_dewey=$id\n";
@@ -117,7 +114,6 @@ function modificarUsuario($dni, $email, $direccion, $telefono, $nombre_usuario, 
     else
         die("Fallo al modificar" . mysql_error());
 }
-
 function borrarusuario($dni) {
     //controlSesion();
     iniciaBD();
@@ -132,9 +128,8 @@ function borrarusuario($dni) {
     else
         die("Fallo al borrar el registro" . mysql_error());
 }
-
 function formularioUsuario($dni, $editable, $valorBoton="Enviar", $accion="") {
-    $query = "select * from usuario where dni= '$dni' \n";
+    $query = "select * from usuario where dni= '$dni'";
 
 
     $resultado = mysql_query($query);
@@ -187,18 +182,7 @@ function formularioUsuario($dni, $editable, $valorBoton="Enviar", $accion="") {
         echo "</form>\n";
     }
 }
-
-function componeInput($nombreName, $valor, $editable){
-          $campo = "<input type='text' name='$nombreName' value='".htmlentities($valor)."' ";
-        if (!$editable)
-            $campo = $campo . "readonly='readonly' ";
-        $campo = $campo . "/>";
-        
-        return $campo;
-        
-}
 ?>
-
 <script LANGUAGE="JavaScript">
     function BorrarUsuario(dni)
     {

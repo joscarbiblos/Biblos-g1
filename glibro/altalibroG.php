@@ -2,6 +2,7 @@
 include "../funciones.php";
 include "./flibro.php";
 controlSesion();
+$usuario =  $_SESSION['usuario'];
 
 ?>
 
@@ -9,6 +10,7 @@ controlSesion();
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>(<?php echo $usuario['nombre_usuario']?>)Librería Online - Gestion de biblioteca   </title>
+        <!--<title>Librería Online - Gestion de biblioteca</title><!--
         <script type="text/javascript" src="../js/validaciones1.js"></script>
         <?php fijaPlantillaCSS();
         ?>
@@ -23,6 +25,7 @@ controlSesion();
 
     </head>
     <body>
+        
 
 
         <h1>Gestion de libros</h1>

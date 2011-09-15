@@ -12,9 +12,9 @@ include_once "../funciones.php";
     <body>
         <?php
         iniciaBD();
-        $id_titulo = $_POST['id_titulo'];
+        $id = $_POST['id_titulo'];
         $dewey = $_POST['dewey_id_categoria_dewey'];
-        $id_apellido = $_POST['id_apellido'];
+        $autor = $_POST['id_apellido'];
         $nombre = $_POST['nombre']; // Nombre completo del tituloa
         $fecha_publicacion = $_POST['fecha_publicacion'];
         $fecha_adquisicion = $_POST['fecha_adquisicion'];

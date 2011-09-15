@@ -1,5 +1,6 @@
 <?php
-include_once "funciones.php";
+include_once "../funciones.php";
+include "flibro.php";
 controlSesion();
 ?>
 <!DOCTYPE html>
@@ -16,14 +17,14 @@ controlSesion();
         $id_titulo = $_GET['c3'];
 
         iniciaBD(); // Paso 1 y 2 de BD
-echo "  <a href='mostrarusuario.php'>.perfil</a>";
+echo "  <a href='../mostrarusuario.php'>.perfil</a>";
        
         $sql = "select * from titulo where 
                 dewey_id_categoria_dewey='$cod_dewey'
                 AND id_apellido='$id_apellido'
                 AND id_titulo='$id_titulo'";
         
-        echo $sql;
+       
 
         $resultado = mysql_query($sql);
         if ($resultado) {
@@ -74,6 +75,7 @@ echo "  <a href='mostrarusuario.php'>.perfil</a>";
             echo"</table>";
 
         }
+       echo  "<br><a href='./index.php'>volver a Gestión libros</a>";
         ?>
     </body>
 </html>
